@@ -13,7 +13,7 @@ def dotProduct(vectors):
   size = len(vectors[0])
   for j in vectors:
     if len(j)!=size:
-      raise ValueError("Size unqual")
+      raise ValueError("Unequal Size")
   val = 0
   for i in range(size):
     temp = 1
@@ -36,16 +36,7 @@ dotProduct([vector1,vector2,vector3])
 2
 3
 4
-]
-A=[
-1
-3
-​
-  
-2
-4
-​
- ] and
+] and
 𝐵
 =
 [
@@ -54,14 +45,21 @@ A=[
 7
 8
 ]
-B=[
-5
-7
-​
-  
-6
-8
-​
- ]. Extend to multiply large sparse matrices.
+. Extend to multiply large sparse matrices.
 """
 
+def matrixMult(a,b):
+  size = len(a[0])
+  arr = []
+  for i in range(a):
+    for val1 in a:
+      temp = 1
+      val2 = b[i]
+      for j in range(len(val1)):
+        temp =  val[j] *val2[j]
+
+
+
+a = [[1, 2],[3,4]]
+b= [[5,6],[7,8]]
+matrixMult(a,b)
