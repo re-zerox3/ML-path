@@ -49,17 +49,20 @@ dotProduct([vector1,vector2,vector3])
 """
 
 def matrixMult(a,b):
-  size = len(a[0])
-  arr = []
-  for i in range(a):
-    for val1 in a:
-      temp = 1
-      val2 = b[i]
-      for j in range(len(val1)):
-        temp =  val[j] *val2[j]
+  m1_row = len(a)
+  m1_col = len(a[0])
+  m2_col = len(b[0])
+
+  new_matrx = [[ 0 for _ in range(m2_col)] for _ in range(m1_row) ]
+  print(new_matrx)
+  for i in range(m1_row):
+    for j in range(m2_col):
+      for g in range(m1_col):
+        new_matrx[i][j] += a[i][g]*b[g][j]
+  print(new_matrx)
 
 
 
-a = [[1, 2],[3,4]]
-b= [[5,6],[7,8]]
+a = [[2,5,6]]
+b= [[3],[4],[-5]]
 matrixMult(a,b)
