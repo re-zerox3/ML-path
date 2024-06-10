@@ -24,6 +24,27 @@ print("transpose")
 array2 = np.transpose(array1)
 print(array2)
 
+L = np.zeros([3,3],dtype = int)
+print("L")
+print(L)
+print("U")
+U = np.zeros([3,3],dtype = int)
+print(U)
+
+arr = [[2,2,3],[5,9,10],[4,1,2]]
+
+def test(arr):
+  size = len(arr)
+  for i in range(1,size):
+    for j in range(size):
+      x = (arr[i][j])-(arr[i][j]/arr[i-1][j])*arr[i-1][j]
+      print(x)
+      print(arr[i][j])
+    print(i, arr[i])
+
+
+print(test(arr))
+
 """2. Perform element-wise multiplication of arrays
 𝑎
 =
@@ -50,11 +71,39 @@ print(array2)
 1. Load the Titanic dataset from a CSV file into a pandas DataFrame. Extend to perform advanced data cleaning and transformation tasks.
 """
 
+import pandas as pd
 
+#pd.options.display.max_rows = 10
+
+data = pd.read_csv("/content/Titanic-Dataset.csv")
+
+print(data)
+
+data = data.drop(columns=["Cabin","Embarked"])
+
+data.isna().sum()
 
 """2. Handle missing values in the Age column by filling with the median age. Extend to perform imputation using k-Nearest Neighbors."""
 
 
 
-"""3. Group the data by the 'Pclass' column and compute the average age for each class. Extend to perform multi-level grouping and aggregations."""
+data["Age"].fillna(data["Age"].mean(),inplace=True)
+print(data)
+data.isna().sum()
 
+var1 = data[["Sex"]]
+
+dummies = pd.get_dummies(var1,dtype=float)
+
+dummies = dummies.drop(columns=["Sex_female"])
+print(dummies)
+data[["Sex"]] = dummies[:]
+print(data)
+
+"""Extend to perform imputation using k-Nearest Neighbors.
+
+3. Group the data by the 'Pclass' column and compute the average age for each class. Extend to perform multi-level grouping and aggregations.
+"""
+
+ave = data.groupby("Pclass")["Age"].mean().reset_index()
+print(ave)
